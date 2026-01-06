@@ -1,0 +1,55 @@
+{
+  "lastUpdated": "2026-01-06T20:15:00Z",
+  "client": {
+    "name": "Demo Client",
+    "company": "Thompson HVAC Services"
+  },
+  "projects": [
+    {
+      "id": "rf-onboarding",
+      "name": "Sales Automation Setup",
+      "status": "active",
+      "progress": 75,
+      "phase": "Implementation",
+      "description": "Complete AI-powered lead response and follow-up system",
+      "startDate": "2026-01-01",
+      "estimatedCompletion": "2026-01-15",
+      "milestones": [
+        { "name": "Discovery Call", "status": "complete", "date": "2026-01-01" },
+        { "name": "System Configuration", "status": "complete", "date": "2026-01-03" },
+        { "name": "Integration Setup", "status": "active", "date": "2026-01-08" },
+        { "name": "Testing & Launch", "status": "pending", "date": "2026-01-15" }
+      ],
+      "metrics": {
+        "leadsConfigured": 3,
+        "automationsActive": 5,
+        "responseTime": "< 60s"
+      }
+    },
+    {
+      "id": "rf-reputation",
+      "name": "Reputation Management",
+      "status": "pending",
+      "progress": 0,
+      "phase": "Scheduled",
+      "description": "Automated review requests and reputation monitoring",
+      "startDate": "2026-01-16",
+      "estimatedCompletion": "2026-01-22",
+      "milestones": [
+        { "name": "Review Platform Setup", "status": "pending", "date": "2026-01-16" },
+        { "name": "Automation Rules", "status": "pending", "date": "2026-01-18" },
+        { "name": "Go Live", "status": "pending", "date": "2026-01-22" }
+      ]
+    }
+  ],
+  "nextActions": [
+    "Complete CRM integration testing",
+    "Review automated response scripts",
+    "Schedule training call for Jan 10"
+  ],
+  "support": {
+    "email": "support@revenuefirst.ai",
+    "slack": "#thompson-hvac",
+    "accountManager": "Ryan Miller"
+  }
+}
