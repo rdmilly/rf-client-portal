@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Portal | RevenueFirst.AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #ffffff;
+            --color-bg-warm: #fafafa;
+            --color-surface: #ffffff;
+            --color-border: #e8eaed;
+            --color-text: #1a1a2e;
+            --color-text-secondary: #4a5568;
+            --color-text-muted: #718096;
+            --color-primary: #1e3a5f;
+            --color-accent: #c41e3a;
+            --color-success: #059669;
+            --color-success-light: #d1fae5;
+            --color-warning: #d97706;
+            --color-warning-light: #fef3c7;
+            --radius: 16px;
+            --radius-sm: 10px;
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+            --shadow-lg: 0 12px 40px rgba(0,0,0,0.12);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--color-bg-warm);
+            color: var(--color-text);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+        header { background: var(--color-primary); padding: 16px 0; }
+        .header-inner { display: flex; align-items: center; justify-content: space-between; }
+        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo-mark {
+            width: 38px; height: 38px; background: var(--color-accent);
+            border-radius: 8px; display: flex; align-items: center; justify-content: center;
+            font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: white;
+        }
+        .logo-text { font-size: 18px; font-weight: 600; color: white; }
+        .logo-text span { color: rgba(255,255,255,0.7); }
+        .header-cta {
+            background: white; color: var(--color-primary);
+            padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600;
+            text-decoration: none; transition: all 0.2s;
+        }
+        .header-cta:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); }
+        .hero {
+            background: linear-gradient(135deg, var(--color-primary) 0%, #2d4a6f 100%);
+            padding: 60px 0 80px; text-align: center; color: white;
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .hero p { font-size: 18px; opacity: 0.9; max-width: 600px; margin: 0 auto 24px; }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(255,255,255,0.15); padding: 8px 16px;
+            border-radius: 100px; font-size: 14px;
+        }
+        .hero-badge .dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        .projects-section { padding: 60px 0; }
+        .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .section-title { font-size: 24px; font-weight: 700; color: var(--color-primary); }
+        .projects-grid { display: flex; flex-direction: column; gap: 24px; }
+        .project-card {
+            background: var(--color-surface); border: 1px solid var(--color-border);
+            border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-md); transition: all 0.3s;
+        }
+        .project-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+        .card-header { display: flex; align-items: center; justify-content: space-between; padding: 24px 28px; border-bottom: 1px solid var(--color-border); }
+        .project-info { display: flex; align-items: center; gap: 16px; }
+        .project-icon { font-size: 32px; }
+        .project-name { font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+        .project-tagline { font-size: 14px; color: var(--color-text-secondary); }
+        .status-badge {
+            font-size: 12px; font-weight: 600; padding: 6px 14px;
+            border-radius: 100px; text-transform: uppercase; letter-spacing: 0.03em;
+        }
+        .status-badge.active { background: var(--color-success-light); color: var(--color-success); }
+        .status-badge.complete { background: #e0f2fe; color: #0284c7; }
+        .status-badge.review { background: var(--color-warning-light); color: var(--color-warning); }
+        .card-body { padding: 28px; }
+        .progress-section { margin-bottom: 20px; }
+        .progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .progress-phase { font-size: 14px; color: var(--color-text-secondary); }
+        .progress-percent { font-size: 18px; font-weight: 700; color: var(--color-primary); }
+        .progress-bar { height: 10px; background: #e8eaed; border-radius: 5px; overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--color-primary), var(--color-accent)); border-radius: 5px; transition: width 0.5s ease; }
+        .milestones { display: flex; justify-content: space-between; margin-top: 10px; }
+        .milestone { font-size: 12px; color: var(--color-text-muted); }
+        .milestone.current { color: var(--color-accent); font-weight: 600; }
+        .milestone.done { color: var(--color-success); }
+        .card-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 28px; background: var(--color-bg-warm); border-top: 1px solid var(--color-border);
+        }
+        .footer-text { font-size: 14px; color: var(--color-text-muted); }
+        .footer-cta {
+            background: var(--color-accent); color: white;
+            padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600;
+            text-decoration: none; transition: all 0.2s;
+        }
+        .footer-cta:hover { background: #a01830; }
+        .trust-section {
+            background: var(--color-primary); color: white;
+            padding: 60px 0; text-align: center;
+        }
+        .trust-section h2 { font-family: 'Playfair Display', serif; font-size: 28px; margin-bottom: 32px; }
+        .trust-items { display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; }
+        .trust-item { display: flex; align-items: center; gap: 12px; font-size: 15px; }
+        .trust-item svg { width: 24px; height: 24px; fill: #22c55e; }
+        footer { padding: 40px 0; text-align: center; color: var(--color-text-muted); font-size: 14px; }
+        footer a { color: var(--color-text-secondary); text-decoration: none; }
+        footer a:hover { color: var(--color-primary); }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-inner">
+                <a href="https://revenuefirst.ai" class="logo">
+                    <div class="logo-mark">R</div>
+                    <div class="logo-text">RevenueFirst<span>.AI</span></div>
+                </a>
+                <a href="https://tidycal.com/revenuefirst" class="header-cta">Schedule a Call</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">
+                <span class="dot"></span>
+                <span>All systems operational</span>
+            </div>
+            <h1>Welcome to Your Client Portal</h1>
+            <p>Track your project progress, view milestones, and stay informed on every step of your automation journey.</p>
+        </div>
+    </section>
+
+    <main class="projects-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Your Projects</h2>
+            </div>
+            <div class="projects-grid" id="projects-grid">
+                <!-- Projects loaded from JSON -->
+            </div>
+        </div>
+    </main>
+
+    <section class="trust-section">
+        <div class="container">
+            <h2>Why Clients Trust Us</h2>
+            <div class="trust-items">
+                <div class="trust-item">
+                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+                    <span>Transparent Progress</span>
+                </div>
+                <div class="trust-item">
+                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+                    <span>Clear Communication</span>
+                </div>
+                <div class="trust-item">
+                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+                    <span>On-Time Delivery</span>
+                </div>
+                <div class="trust-item">
+                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+                    <span>Results That Matter</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 <a href="https://revenuefirst.ai">RevenueFirst.AI</a> | A <a href="https://millyweb.com">Millyweb Development</a> Company</p>
+        </div>
+    </footer>
+
+    <script>
+        async function loadProjects() {
+            try {
+                const response = await fetch('projects.json');
+                const data = await response.json();
+                renderProjects(data.projects);
+            } catch (error) {
+                console.error('Failed to load projects:', error);
+                document.getElementById('projects-grid').innerHTML = '<p style="color: var(--color-text-muted); text-align: center; padding: 40px;">Unable to load projects. Please contact support.</p>';
+            }
+        }
+
+        function renderProjects(projects) {
+            const grid = document.getElementById('projects-grid');
+            grid.innerHTML = projects.map(project => `
+                <div class="project-card">
+                    <div class="card-header">
+                        <div class="project-info">
+                            <span class="project-icon">${project.icon}</span>
+                            <div>
+                                <div class="project-name">${project.name}</div>
+                                <div class="project-tagline">${project.tagline}</div>
+                            </div>
+                        </div>
+                        <span class="status-badge ${project.status}">${project.statusLabel}</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="progress-section">
+                            <div class="progress-header">
+                                <span class="progress-phase">${project.phase}</span>
+                                <span class="progress-percent">${project.progress}%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${project.progress}%"></div>
+                            </div>
+                            <div class="milestones">
+                                ${project.milestones.map((m, i) => `<span class="milestone ${m.status}">${m.name}</span>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="footer-text">Last updated: ${project.lastUpdate}</span>
+                        <a href="https://tidycal.com/revenuefirst" class="footer-cta">Questions? Let's Talk</a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        loadProjects();
+    </script>
+</body>
+</html>
